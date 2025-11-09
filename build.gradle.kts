@@ -5,6 +5,8 @@
 plugins {
     `java-library`
     `maven-publish`
+    id("com.gradleup.shadow") version "9.0.0-rc2"
+    id("io.papermc.paperweight.userdev") version "2.0.0-beta.19"
 }
 
 repositories {
@@ -14,33 +16,26 @@ repositories {
     }
 
     maven {
-        url = uri("https://maven.pkg.github.com/APDevTeam/Movecraft")
-    }
-
-    maven {
-        url = uri("https://hub.spigotmc.org/nexus/content/groups/public/")
-    }
-
-    maven {
         url = uri("https://repo.mikeprimm.com/")
     }
 
     maven {
-        url = uri("https://papermc.io/repo/repository/maven-public/")
+        url = uri("https://repo.papermc.io/repository/maven-public/")
     }
 }
 
 dependencies {
-    api(libs.io.papermc.paperlib)
-    compileOnly(libs.org.spigotmc.spigot.api)
-    compileOnly(libs.us.dynmap.dynmap.api)
-    compileOnly(libs.io.papermc.paper.paper.api)
+    paperweight.paperDevBundle("1.21.8-R0.1-SNAPSHOT")
+    api("io.papermc:paperlib:1.0.8-SNAPSHOT")
+    //compileOnly(libs.org.spigotmc.spigot.api)
+    compileOnly("us.dynmap:DynmapCoreAPI:3.7-beta-6")
+    compileOnly("us.dynmap:dynmap-api:3.7-beta-6")
 }
 
 group = "com.wimbli.WorldBorder"
 version = "2.1.5"
 description = "WorldBorder"
-java.sourceCompatibility = JavaVersion.VERSION_1_8
+java.sourceCompatibility = JavaVersion.VERSION_23
 
 publishing {
     publications.create<MavenPublication>("maven") {
@@ -54,4 +49,10 @@ tasks.withType<JavaCompile>() {
 
 tasks.withType<Javadoc>() {
     options.encoding = "UTF-8"
+}
+
+tasks.shadowJar {
+    archiveBaseName.set("WorldBorder")
+    archiveClassifier.set("")
+    archiveVersion.set("")
 }

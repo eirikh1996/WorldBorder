@@ -29,7 +29,6 @@ public class BorderData {
         safeOpenBlocks.add(Material.DETECTOR_RAIL);
         safeOpenBlocks.add(Material.ACTIVATOR_RAIL);
         safeOpenBlocks.add(Material.COBWEB);
-        safeOpenBlocks.add(Material.GRASS);
         safeOpenBlocks.add(Material.FERN);
         safeOpenBlocks.add(Material.DEAD_BUSH);
         safeOpenBlocks.add(Material.DANDELION);
