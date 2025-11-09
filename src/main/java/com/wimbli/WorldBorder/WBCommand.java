@@ -4,12 +4,15 @@ import com.wimbli.WorldBorder.cmd.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 
-public class WBCommand implements CommandExecutor {
+public class WBCommand implements TabExecutor {
     // ref. list of the commands which can have a world name in front of the command itself (ex. /wb _world_ radius 100)
     private final Set<String> subCommandsWithWorldNames = new LinkedHashSet<String>();
     // map of all sub-commands with the command name (string) for quick reference
@@ -180,5 +183,10 @@ public class WBCommand implements CommandExecutor {
         // removing default "commands" command as it's not normally shown or run like other commands
         commands.remove("commands");
         return commands;
+    }
+
+    @Override
+    public @Nullable List<String> onTabComplete(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String @NotNull [] strings) {
+        return List.of();
     }
 }
